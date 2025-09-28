@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Putra Sandjaja - Network Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #003d7a;
+            --accent: #007bff;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --network-green: #28a745;
+            --completed: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--network-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 123, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(40, 167, 69, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: var(--shadow);
+            margin: 0 auto 2rem;
+            background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img {
+            background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill {
+            background: var(--light);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            border: 1px solid var(--accent);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .project-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            height: 200px;
+            background: url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+        }
+
+        .project-img.server {
+            background: url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 1rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Home Lab Detail Section */
+        .home-lab-detail {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .topology-diagram {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .topology-diagram img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .lab-details {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .lab-details h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .lab-details .project-overview {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            border-left: 3px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+        
+        .device-list {
+            margin-bottom: 2rem;
+        }
+
+        .device-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .device-item i {
+            font-size: 1.5rem;
+            color: var(--network-green);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .device-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .device-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .benefits-section {
+            margin-top: 2rem;
+        }
+
+        .benefits-section h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .benefit-item i {
+            font-size: 1.5rem;
+            color: var(--network-green);
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h5 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .note-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .note-box h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .note-box h4 i {
+            margin-right: 0.5rem;
+        }
+
+        .note-box p {
+            color: #856404;
+            font-size: 0.9rem;
+        }
+
+        /* Home Server Detail Section */
+        .home-server-detail {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .server-diagram {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .server-diagram img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .server-details {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .server-details h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .server-specs {
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .spec-item i {
+            font-size: 1.5rem;
+            color: var(--network-green);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .spec-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .server-benefits {
+            margin-top: 2rem;
+        }
+
+        .server-benefits h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .server-benefit-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .server-benefit-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+        }
+
+        /* Networking Focus Section */
+        .networking-focus {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .focus-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .focus-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .focus-card i {
+            font-size: 3rem;
+            color: var(--network-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .focus-card p {
+            color: var(--gray);
+        }
+
+        /* Certifications Section */
+        .certifications {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .cert-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--network-green);
+            transition: transform 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-card.completed {
+            border-left-color: var(--completed);
+        }
+
+        .cert-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .cert-card .issuer {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+
+        .cert-card .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .cert-card .status.completed {
+            background: var(--completed);
+            color: white;
+        }
+
+        .cert-card .status.in-progress {
+            background: var(--network-green);
+            color: white;
+        }
+
+        .cert-card .status.planned {
+            background: var(--gray);
+            color: white;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .edu-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .edu-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .edu-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .edu-card .school {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .year {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-card p {
+            color: var(--gray);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .contact-cta {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            width: 280px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .contact-card .contact-info {
+            font-size: 0.9rem;
+            color: var(--gray);
+            word-break: break-all;
+        }
+
+        /* Hide project details by default */
+        #home-lab,
+        #home-server {
+            display: none;
+        }
+
+        /* Button styling additions */
+        .btn-details {
+            margin-top: auto;
+            align-self: flex-start;
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-details:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .about-content, .lab-content, .server-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .edu-cards,
+            .cert-cards,
+            .focus-cards,
+            .project-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-network-wired"></i>
+                    APS
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#networking">Networking</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-img"></div>
+                <h1>Alexander Putra Sandjaja</h1>
+                <div class="subtitle">Aspiring Network Engineer</div>
+                <p>A 5th-semester Computer Science student at Binus University with a dedicated passion for networking. Having completed CCNA training, I am currently building practical experience through a personal home lab.</p>
+                <a href="#contact" class="btn">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img"></div>
+                <div class="about-text">
+                    <h3>Hello! I'm Alexander</h3>
+                    <p>I am a 5th-semester Computer Science student at Binus University with a primary focus on networking. I am currently exploring various aspects of computer networks, from fundamental concepts to advanced implementation.</p>
+                    <p>I have completed CCNA training at id-networkers, which provided me with a strong foundation in Cisco networking. My current focus is on mastering switching technologies, routing technologies, and network services & security, following the CCNA curriculum.</p>
+                    <p>My vision is to become a competent and internationally certified network engineer, capable of designing and managing reliable and secure network infrastructures.</p>
+                    
+                    <div class="skills">
+                        <div class="skill">TCP/IP</div>
+                        <div class="skill">Cisco IOS</div>
+                        <div class="skill">VLANs</div>
+                        <div class="skill">OSPF</div>
+                        <div class="skill">Network Security</div>
+                        <div class="skill">DHCP/DNS</div>
+                        <div class="skill">Wireshark</div>
+                        <div class="skill">VPN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-content">
+                        <h3>Home Lab</h3>
+                        <p>A development plan for a layered security architecture in my home lab, with the future integration of a FortiGate 30E as a Next-Generation Firewall.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Future Plan</span>
+                            <span class="project-tag">FortiGate 30E</span>
+                            <span class="project-tag">NGFW</span>
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">Router HPE MSR930</span>
+                            <span class="project-tag">Switch HPE 4210G</span>
+                            <span class="project-tag">Aruba AP11</span>
+                        </div>
+                        <a href="#home-lab" class="btn-details" data-target="home-lab">Explore Setup</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img server"></div>
+                    <div class="project-content">
+                        <h3>Home Server</h3>
+                        <p>A personal project to build a home server for creating a private cloud drive and hosting a personal game server, eliminating the need for external rental services.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Cloud Drive</span>
+                            <span class="project-tag">Game Server</span>
+                            <span class="project-tag">Self-hosted</span>
+                            <span class="project-tag">Ubuntu</span>
+                        </div>
+                        <a href="#home-server" class="btn-details" data-target="home-server">Explore Setup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-lab" class="home-lab-detail">
+        <div class="container">
+            <div class="section-title">
+                <h2>Home Lab Setup Details</h2>
+            </div>
+            
+            <div class="topology-diagram">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Network Topology">
+                <h3>Network Topology Diagram</h3>
+                <p>Visualization of the home lab network architecture</p>
+            </div>
+            
+            <div class="lab-details">
+                <p class="project-overview">
+                    This project started with a simple, practical goal: to solve the single-device limitation of my primary internet source, wifi.id@home. The initial setup was just a basic router to share this connection with multiple devices. As I progressed through my CCNA studies, I began applying theoretical concepts like VLANs for network segmentation and trunking to transform this simple setup into a true learning environment. This lab now serves as my platform to demonstrate practical skills in managing enterprise-grade hardware (HPE, Aruba) and designing a secure, multi-VLAN network, effectively bridging the gap between theory and real-world application.
+                </p>
+
+                <h3>Components & Configuration</h3>
+                
+                <div class="device-list">
+                    <div class="device-item">
+                        <i class="fas fa-wifi"></i>
+                        <div class="device-info">
+                            <h4>TP-Link WISP Router</h4>
+                            <p>Functions as a bridge for the wifi.id@home connection, forwarding the network to the main router.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="device-item">
+                        <i class="fas fa-router"></i>
+                        <div class="device-info">
+                            <h4>HPE MSR930 Router</h4>
+                            <p>The main router that handles all network functions (DHCP, DNS, Routing, Firewall, Port Forwarding).</p>
+                        </div>
+                    </div>
+
+                    <div class="device-item">
+                        <i class="fas fa-calendar-plus" style="color: var(--gray);"></i>
+                        <div class="device-info">
+                            <h4>[Planned Upgrade] FortiGate 30E Firewall</h4>
+                            <p>Planned for integration as the primary NGFW. It will be responsible for security policies, inter-VLAN traffic inspection, web filtering, and IPS.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="device-item">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <div class="device-info">
+                            <h4>Aruba AP11 Access Point</h4>
+                            <p>A Multi-VLAN Access Point serving multiple SSIDs for various VLANs (Core, IoT, Guest).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="device-item">
+                        <i class="fas fa-network-wired"></i>
+                        <div class="device-info">
+                            <h4>HPE 4210G Switch</h4>
+                            <p>
+                                The central managed switch responsible for traffic segmentation. It uses a <strong>trunk port</strong> to deliver all VLANs (10, 20, 30) to the Aruba AP, while <strong>access ports</strong> are assigned based on device type: <strong>VLAN 10 (Core)</strong> for trusted devices like PCs/Laptops, and the isolated <strong>VLAN 20 (IoT)</strong> for devices like CCTV.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefits-section">
+                    <h4>Benefits & Solutions</h4>
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <div class="benefit-content">
+                            <h5>Multi-Device Connection</h5>
+                            <p>Overcomes the limitation of wifi.id@home, which only allows one account per device. With this setup, one account can be used for many devices simultaneously.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-home"></i>
+                        <div class="benefit-content">
+                            <h5>Home WiFi Solution</h5>
+                            <p>Provides an internet connection solution for homes without dedicated WiFi service. All devices in the house can connect to the internet stably.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="benefit-content">
+                            <h5>Smart Home Ready</h5>
+                            <p>This network infrastructure enables a future smart home setup. With a capable router, all IoT devices can be connected and managed easily.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="benefit-content">
+                            <h5>Learning Environment</h5>
+                            <p>This setup serves as a real-world laboratory for learning networking, implementing CCNA concepts, and experimenting with various network configurations.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <h4><i class="fas fa-lightbulb"></i> Important Note</h4>
+                    <p>The HPE switch is only used as needed due to its significant power consumption. This setup allows for flexibility in managing devices with optimal energy efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-server" class="home-server-detail">
+        <div class="container">
+            <div class="section-title">
+                <h2>Home Server Setup Details</h2>
+            </div>
+
+            <div class="server-diagram">
+                <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Server Setup">
+                <h3>Ubuntu Server Configuration</h3>
+                <p>Visualization of the game server and cloud drive setup</p>
+            </div>
+            
+            <div class="server-details">
+                <h3>Server Specifications & Configuration</h3>
+                
+                <div class="server-specs">
+                    <div class="spec-item">
+                        <i class="fab fa-ubuntu"></i>
+                        <div class="spec-info">
+                            <h4>Ubuntu Server 22.04 LTS</h4>
+                            <p>A stable and reliable server operating system for hosting various services.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <i class="fas fa-laptop"></i>
+                        <div class="spec-info">
+                            <h4>Hardware</h4>
+                            <p>Utilizes a used Dell Inspiron laptop with an Intel Core i7 8th Gen processor, 8GB RAM, and 1TB SSD Storage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <i class="fas fa-hdd"></i>
+                        <div class="spec-info">
+                            <h4>Storage Configuration</h4>
+                            <p>500GB for the Ubuntu system, 500GB for Nextcloud (cloud drive), and dynamic allocation for game server files.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="server-benefits">
+                    <h4>Benefits of a Home Server</h4>
+                    <div class="server-benefit-list">
+                        <div class="server-benefit-tag">Cost-Effective</div>
+                        <div class="server-benefit-tag">Full Control</div>
+                        <div class="server-benefit-tag">Low Latency</div>
+                        <div class="server-benefit-tag">Privacy</div>
+                        <div class="server-benefit-tag">Customizable</div>
+                        <div class="server-benefit-tag">Learning Platform</div>
+                        <div class="server-benefit-tag">24/7 Uptime</div>
+                        <div class="server-benefit-tag">Multiplayer Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="networking" class="networking-focus">
+        <div class="container">
+            <div class="section-title">
+                <h2>Networking Focus</h2>
+            </div>
+            <div class="focus-cards">
+                <div class="focus-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Switching Technologies</h3>
+                    <p>Studying switching concepts including VLANs, trunking, Spanning Tree Protocol (STP), and Cisco switch configuration according to CCNA standards.</p>
+                </div>
+                <div class="focus-card">
+                    <i class="fas fa-route"></i>
+                    <h3>Routing Technologies</h3>
+                    <p>Deepening knowledge of static and dynamic routing (OSPF, EIGRP), as well as Cisco router configuration for IP connectivity.</p>
+                </div>
+                <div class="focus-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Network Services & Security</h3>
+                    <p>Learning network services like DHCP, DNS, NAT, and network security with ACLs, VPNs, and basic firewall concepts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications & Training</h2>
+            </div>
+            <div class="cert-cards">
+                <div class="cert-card completed">
+                    <h3>CCNA Training</h3>
+                    <div class="issuer">ID-Networkers</div>
+                    <div class="date">Completed 2023</div>
+                    <span class="status completed">Completed</span>
+                </div>
+                <div class="cert-card">
+                    <h3>Cisco Certified Network Associate (CCNA)</h3>
+                    <div class="issuer">Cisco Systems</div>
+                    <div class="date">Target: End of 2025</div>
+                    <span class="status planned">Planned</span>
+                </div>
+                <div class="cert-card">
+                    <h3>Fortinet Certified Associate (FCA)</h3>
+                    <div class="issuer">Fortinet</div>
+                    <div class="date">Target: End of 2025</div>
+                    <span class="status planned">Planned</span>
+                </div>
+                <div class="cert-card">
+                    <h3>AWS Certified Cloud Practitioner</h3>
+                    <div class="issuer">Amazon Web Services</div>
+                    <div class="date">Target: End of 2025</div>
+                    <span class="status planned">Planned</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="edu-cards">
+                <div class="edu-card">
+                    <h3>Computer Science</h3>
+                    <div class="school">BINUS University</div>
+                    <div class="year">2023 - Present (5th Semester)</div>
+                    <p>Focusing on computer networks, network security, and distributed systems. Taking specific courses such as Computer Networks, Network Security, and Cloud Computing.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>SMA Global Mandiri Cibubur</h3>
+                    <div class="school">Science Major</div>
+                    <div class="year">2020 - 2023</div>
+                    <p>Graduated in 2023, actively competed in mathematics, winning medals in several competitions and an honorable mention in the National Science Olympiad (OSN).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <p class="contact-cta">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out.
+            </p>
+            <div class="contact-card-container">
+                <a href="mailto:alexander.sandjaja@binus.ac.id" class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-title">Email</div>
+                    <div class="contact-info">alexander.sandjaja@binus.ac.id</div>
+                </a>
+                <a href="https://www.linkedin.com/in/alexander-putra-sandjaja/" target="_blank" class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <div class="contact-title">LinkedIn</div>
+                    <div class="contact-info">Alexander Putra Sandjaja</div>
+                </a>
+                <a href="https://github.com/AlexPutraS" target="_blank" class="contact-card">
+                    <i class="fab fa-github"></i>
+                    <div class="contact-title">GitHub</div>
+                    <div class="contact-info">Alexander Putra Sandjaja</div>
+                </a>
+                <a href="tel:081514037105" class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-title">Phone</div>
+                    <div class="contact-info">081514037105</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 Alexander Putra Sandjaja. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId && document.querySelector(targetId)) {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Toggle detail sections
+        document.querySelectorAll('.btn-details').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.dataset.target;
+                const section = document.getElementById(targetId);
+
+                if (section.style.display === 'block') {
+                    section.style.display = 'none';
+                    this.textContent = 'Explore Setup';
+                } else {
+                    // Optional: Hide other detail sections when one is opened
+                    document.querySelectorAll('.home-lab-detail, .home-server-detail').forEach(s => {
+                        if (s !== section) {
+                            s.style.display = 'none';
+                        }
+                    });
+                    document.querySelectorAll('.btn-details').forEach(b => {
+                        if (b !== this) {
+                            b.textContent = 'Explore Setup';
+                        }
+                    });
+                    
+                    section.style.display = 'block';
+                    this.textContent = 'Hide Setup';
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
