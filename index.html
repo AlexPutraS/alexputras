@@ -309,6 +309,49 @@
             font-weight: 600;
         }
 
+        /* Photo Gallery Styling */
+        .photo-gallery {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .main-photo img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail-container .thumbnail {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail-container .thumbnail:hover {
+            opacity: 0.7;
+        }
+
+        .thumbnail-container .thumbnail.active {
+            border-color: var(--primary);
+        }
+
         /* Home Lab Detail Section */
         .home-lab-detail {
             padding: 5rem 0;
@@ -958,7 +1001,7 @@
                 <div class="thumbnail-container">
                     <img src="topology-diagram.png" alt="Topology Diagram" class="thumbnail active">
                     <img src="ArubaAP.jpg" alt="Access Point" class="thumbnail">
-                    <img src="Router HPE.jpg" alt="Router" class="thumbnail">
+                    <img src="Router HPE" alt="Router" class="thumbnail">
                     <img src="SW-FW.jpg" alt="Switch & Firewall" class="thumbnail">
                 </div>
             </div>
@@ -1287,8 +1330,22 @@
                 }
             });
         });
+
+        // Photo Gallery Logic
+        const mainPhoto = document.querySelector('.main-photo img');
+        const thumbnails = document.querySelectorAll('.thumbnail-container .thumbnail');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                // Change main photo source
+                mainPhoto.src = this.src;
+
+                // Update active class
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
     </script>
     
 </body>
 </html>
-
