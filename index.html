@@ -930,6 +930,46 @@
         .main-photo img {
             cursor: pointer;
         }
+
+        /* Thumbnail Inspection Styles */
+        .thumbnail-item {
+            position: relative; /* Required for positioning the icon */
+        }
+
+        .inspect-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            opacity: 0; /* Hide by default */
+        }
+        
+        .thumbnail-item:hover .inspect-icon {
+            opacity: 1; /* Show on hover */
+        }
+
+        .inspect-icon:hover {
+            background-color: var(--primary);
+        }
+
+        .thumbnail-item.inspected {
+            z-index: 10; /* Bring to front */
+        }
+        
+        .thumbnail-item.inspected .thumbnail {
+            transform: scale(2.5); /* Enlarge the image */
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -1048,13 +1088,24 @@
                 <div class="main-photo">
                     <img src="topology-diagram.png" alt="Main view of Home Lab">
                 </div>
-                <div class="thumbnail-container">
-                    <img src="topology-diagram.png" alt="Topology Diagram" class="thumbnail active">
-                    <img src="ArubaAP.jpg" alt="Access Point" class="thumbnail">
-                    <img src="Router HPE" alt="Router" class="thumbnail">
-                    <img src="SW-FW.jpg" alt="Switch & Firewall" class="thumbnail">
+<div class="thumbnail-container">
+                    <div class="thumbnail-item">
+                        <img src="topology-diagram.png" alt="Topology Diagram" class="thumbnail active">
+                        <span class="inspect-icon"><i class="fas fa-search-plus"></i></span>
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="Router.jpg" alt="Physical Rack Photo" class="thumbnail">
+                        <span class="inspect-icon"><i class="fas fa-search-plus"></i></span>
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="Aruba AP.jpg" alt="Cabling Management" class="thumbnail">
+                        <span class="inspect-icon"><i class="fas fa-search-plus"></i></span>
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="SW-FW.jpg" alt="Devices On" class="thumbnail">
+                        <span class="inspect-icon"><i class="fas fa-search-plus"></i></span>
+                    </div>
                 </div>
-            </div>
             
             <div class="lab-details">
                 <p class="project-overview">
@@ -1426,7 +1477,32 @@
                 modal.style.display = "none";
             }
         });
+
+        // Thumbnail Inspection Logic
+        const inspectIcons = document.querySelectorAll('.inspect-icon');
+
+        inspectIcons.forEach(icon => {
+            icon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevents the main photo from changing
+
+                const container = this.parentElement;
+                const iconElement = this.querySelector('i');
+
+                // Toggle the 'inspected' state on the container
+                container.classList.toggle('inspected');
+
+                // Change the icon based on the state
+                if (container.classList.contains('inspected')) {
+                    iconElement.classList.remove('fa-search-plus');
+                    iconElement.classList.add('fa-search-minus');
+                } else {
+                    iconElement.classList.remove('fa-search-minus');
+                    iconElement.classList.add('fa-search-plus');
+                }
+            });
+        });
     </script>
     
 </body>
 </html>
+
