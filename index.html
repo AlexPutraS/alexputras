@@ -47,12 +47,12 @@
             z-index: 1000;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
+nav {
+    display: flex;
+    justify-content: flex-end; /* Diubah menjadi flex-end */
+    align-items: center;
+    padding: 1.5rem 0;
+}
 
         .logo {
             font-size: 1.8rem;
@@ -121,14 +121,14 @@
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: var(--shadow);
-            margin: 0 auto 2rem;
-            background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
-        }
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: var(--shadow);
+    margin: 0 auto 2rem;
+    background: url('Formal Depan.png') center/cover;
+}
 
         .hero h1 {
             font-size: 3rem;
@@ -267,13 +267,13 @@
         }
 
         .project-img {
-            height: 200px;
+            height: 300px;
             background: url('Thunbnail HomeLAB.png') center/cover;
         }
 
         .project-img.server {
-            height: 200px;
-            ackground: url('Thunbnail HomeServer.png') center/cover;
+            height: 300px;
+            background: url('Thunbnail HomeServer.png') center/cover;
         }
 
         .project-content {
@@ -989,16 +989,30 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Custom Packet Tracer Icon Style */
+        .cpt-icon {
+            width: 30px;
+            height: 30px;
+            fill: var(--network-green);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Custom Network Symbol Icons */
+        .network-symbol-icon {
+            width: 30px;
+            height: 30px;
+            fill: var(--network-green);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <i class="fas fa-network-wired"></i>
-                    APS
-                </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -1105,10 +1119,10 @@
             
             <div class="photo-gallery">
                 <div class="main-photo">
-                    <img src="topology-diagram.png" alt="Main view of Home Lab">
+                    <img src="Main Photo.jpg" alt="Main view of Home Lab">
                 </div>
                 <div class="thumbnail-container">
-                    <img src="topology-diagram.png" alt="Topology Diagram" class="thumbnail active">
+                    <img src="Topology.png" alt="Topology Diagram" class="thumbnail active">
                     <img src="Router HPE.jpg" alt="Physical Rack Photo" class="thumbnail">
                     <img src="ArubaAP.jpg" alt="Cabling Management" class="thumbnail">
                     <img src="SW-FW.jpg" alt="Devices On" class="thumbnail">
@@ -1132,7 +1146,11 @@
                     </div>
                     
                     <div class="device-item">
-                        <i class="fas fa-router"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="cpt-icon">
+    <path d="M12 3c-4.97 0-9 2.015-9 4.5s4.03 4.5 9 4.5 9-2.015 9-4.5-4.03-4.5-9-4.5zm0 1c4.411 0 8 1.567 8 3.5s-3.589 3.5-8 3.5-8-1.567-8-3.5 3.589-3.5 8-3.5z"/>
+    <path d="M3 7.5v9c0 2.485 4.03 4.5 9 4.5s9-2.015 9-4.5v-9c-2.022 1.446-5.228 2.5-9 2.5s-6.978-1.054-9-2.5zm1 1.07c1.789.932 4.639 1.93 8 1.93s6.211-.998 8-1.93v7.93c0 1.933-3.589 3.5-8 3.5s-8-1.567-8-3.5v-7.93z"/>
+    <path d="M11.5 5.208l-1.5-1.208-1.5 1.208 1.5 1.292 1.5-1.292zm-1.5-2.208l-2.5-2-1.5 1 2.5 2 1.5-1zm1.5 6.292l-1.5 1.208-1.5-1.208 1.5-1.292 1.5 1.292zm-1.5 3.208l-2.5 2-1.5-1 2.5-2 1.5 1zm4.5-7.292l1.5-1.208 1.5 1.208-1.5 1.292-1.5-1.292zm1.5-2.208l2.5-2 1.5 1-2.5 2-1.5-1zm-1.5 6.292l1.5 1.208 1.5-1.208-1.5-1.292-1.5 1.292zm1.5 3.208l2.5 2 1.5-1-2.5-2-1.5 1z"/>
+</svg>
                         <div class="device-info">
                             <h4>HPE MSR930 Router</h4>
                             <p>The main router that handles all network functions (DHCP, DNS, Routing, Firewall, Port Forwarding).</p>
@@ -1156,7 +1174,11 @@
                     </div>
                     
                     <div class="device-item">
-                        <i class="fas fa-network-wired"></i>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="network-symbol-icon">
+    <path d="M21,4H3C1.9,4,1,4.9,1,6v12c0,1.1,0.9,2,2,2h18c1.1,0,2-0.9,2-2V6C23,4.9,22.1,4,21,4z M21,18H3V6h18V18z"/>
+    <path d="M8,10H5l3-3l-3-3h3l3,3L8,10z M16,10l3-3l-3-3h-3l3,3l-3,3H16z"/>
+    <path d="M8,14h3l-3,3l3,3H8l-3-3L8,14z M16,14l-3,3l3,3h3l-3-3l3-3H16z"/>
+</svg>
                         <div class="device-info">
                             <h4>HPE 4210G Switch</h4>
                             <p>
@@ -1206,63 +1228,82 @@
         </div>
     </section>
 
-    <section id="home-server" class="home-server-detail">
-        <div class="container">
-            <div class="section-title">
-                <h2>Home Server Setup Details</h2>
-            </div>
-
-            <div class="server-diagram">
-                <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Server Setup">
-                <h3>Ubuntu Server Configuration</h3>
-                <p>Visualization of the game server and cloud drive setup</p>
-            </div>
-            
+<section id="home-server" class="home-server-detail">
+    <div class="container">
+        <div class="section-title">
+            <h2>Home Server Setup Details</h2>
+        </div>
+        <div class="server-content">
             <div class="server-details">
-                <h3>Server Specifications & Configuration</h3>
-                
+                <h3>Phase 1: Private Cloud & Server Foundation</h3>
+                <p style="margin-bottom: 2rem;">
+                    This home server project began as a solution for secure and centralized personal data storage. The first phase focused on building a stable server foundation using Ubuntu Server and a private cloud service with Nextcloud, which functions like a personal Google Drive.
+                </p>
+
                 <div class="server-specs">
                     <div class="spec-item">
                         <i class="fab fa-ubuntu"></i>
                         <div class="spec-info">
-                            <h4>Ubuntu Server 22.04 LTS</h4>
-                            <p>A stable and reliable server operating system for hosting various services.</p>
+                            <h4>Ubuntu Server 24.04 LTS</h4>
+                            <p>A stable operating system as the base for all services.</p>
                         </div>
                     </div>
-                    
                     <div class="spec-item">
-                        <i class="fas fa-laptop"></i>
+                        <i class="fas fa-microchip"></i>
                         <div class="spec-info">
                             <h4>Hardware</h4>
-                            <p>Utilizes a used Dell Inspiron laptop with an Intel Core i7 8th Gen processor, 8GB RAM, and 1TB SSD Storage.</p>
+                            <p>Intel Core i7 GEN 8, 8GB RAM, 1TB SSD.</p>
                         </div>
                     </div>
-                    
                     <div class="spec-item">
-                        <i class="fas fa-hdd"></i>
+                        <i class="fas fa-cloud"></i>
                         <div class="spec-info">
-                            <h4>Storage Configuration</h4>
-                            <p>500GB for the Ubuntu system, 500GB for Nextcloud (cloud drive), and dynamic allocation for game server files.</p>
+                            <h4>Current Service: Nextcloud</h4>
+                            <p>A private cloud for syncing files, calendars, and contacts across various devices.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="lab-details" style="background-color: white;">
+                <h3>Development Roadmap</h3>
+                <p>As this lab is still in its early stages, here is the roadmap for future development and enhancements:</p>
                 
-                <div class="server-benefits">
-                    <h4>Benefits of a Home Server</h4>
-                    <div class="server-benefit-list">
-                        <div class="server-benefit-tag">Cost-Effective</div>
-                        <div class="server-benefit-tag">Full Control</div>
-                        <div class="server-benefit-tag">Low Latency</div>
-                        <div class="server-benefit-tag">Privacy</div>
-                        <div class="server-benefit-tag">Customizable</div>
-                        <div class="server-benefit-tag">Learning Platform</div>
-                        <div class="server-benefit-tag">24/7 Uptime</div>
-                        <div class="server-benefit-tag">Multiplayer Ready</div>
+                <div class="benefit-item" style="margin-top: 1.5rem;">
+                    <i class="fab fa-docker"></i>
+                    <div class="benefit-content">
+                        <h5>Phase 2: Migration to Containerization (Docker)</h5>
+                        <p>Moving all services into Docker containers for more efficient management, scalability, and application isolation.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="benefit-content">
+                        <h5>Phase 3: Server Security Hardening</h5>
+                        <p>Implementing UFW firewall, enforcing SSH Key authentication, and installing Fail2Ban for protection against brute-force attacks.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <i class="fas fa-gamepad"></i>
+                    <div class="benefit-content">
+                        <h5>Phase 4: Hosting Private Game Servers</h5>
+                        <p>Dedicating resources to host private game servers for games like Minecraft, GTA V (FiveM), etc.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="benefit-content">
+                        <h5>Phase 5: Implementing Monitoring & VPN</h5>
+                        <p>Installing a monitoring dashboard (e.g., Grafana) to track server performance and setting up a private VPN (WireGuard) for secure remote access.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="networking" class="networking-focus">
         <div class="container">
@@ -1456,6 +1497,7 @@
     
 </body>
 </html>
+
 
 
 
