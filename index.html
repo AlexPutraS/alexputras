@@ -961,34 +961,77 @@ nav {
             }
         }
         
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .edu-cards,
-            .cert-cards,
-            .focus-cards,
-            .project-cards {
-                grid-template-columns: 1fr;
-            }
-        }
+/* --- RESPONSIVE MOBILE MENU --- */
+@media (max-width: 768px) {
+    /* Atur Navigasi Utama */
+    nav {
+        justify-content: space-between; /* Logo kiri, Hamburger kanan */
+        padding: 1rem 0;
+        position: relative; /* Penting untuk positioning menu */
+    }
+
+    .nav-links {
+        display: none; /* Tersembunyi default */
+        position: absolute;
+        top: 100%; /* Muncul tepat di bawah header */
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column; /* Susun link ke bawah (Vertikal) */
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+
+    /* Class 'active' ini nanti dipanggil pakai JavaScript */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0; /* Jarak antar link atas-bawah */
+    }
+
+    .nav-links a {
+        font-size: 1.1rem; /* Perbesar teks biar gampang dipencet */
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-menu {
+        display: block;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--primary);
+    }
+    
+    /* Penyesuaian Layout Hero & Lainnya di HP */
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .about-content,
+    .lab-content,
+    .server-content,
+    .edu-cards,
+    .cert-cards,
+    .focus-cards,
+    .project-cards {
+        grid-template-columns: 1fr; /* Paksa semua jadi 1 kolom */
+    }
+
+    /* Sembunyikan foto profil di hero jika layar terlalu kecil (opsional) */
+    .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+}
 
         /* Custom Packet Tracer Icon Style */
         .cpt-icon {
@@ -1007,6 +1050,119 @@ nav {
             margin-right: 1rem;
             flex-shrink: 0;
         }
+
+        .console-log-container {
+    background-color: #1e1e1e; /* Warna latar terminal */
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* --- LIGHTBOX / ZOOM STYLES --- */
+
+/* Style untuk gambar yang bisa di-klik */
+.zoom-trigger {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay ikon kaca pembesar saat di-hover */
+.zoom-trigger::after {
+    content: '\f00e'; /* FontAwesome Search Plus Icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.zoom-trigger:hover::after {
+    opacity: 1;
+}
+
+/* The Modal (Background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* Di atas header */
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1000px;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    animation-name: zoom;
+    animation-duration: 0.3s;
+}
+
+/* Caption text */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+    font-size: 1.1rem;
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--primary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add Animation */
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* Responsive */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -1153,7 +1309,7 @@ nav {
 </svg>
                         <div class="device-info">
                             <h4>HPE MSR930 Router</h4>
-                            <p>The main router that handles all network functions (DHCP, DNS, Routing, Firewall, Port Forwarding).</p>
+                            <p>The core router handling <strong>Inter-VLAN Routing</strong>, DHCP Services, and <strong>Static Routing</strong> to ensure stable connectivity for the Home Server IP block.</p>
                         </div>
                     </div>
 
@@ -1161,7 +1317,9 @@ nav {
                         <i class="fas fa-calendar-plus" style="color: var(--gray);"></i>
                         <div class="device-info">
                             <h4>[Planned Upgrade] FortiGate 30E Firewall</h4>
-                            <p>Planned for integration as the primary NGFW. It will be responsible for security policies, inter-VLAN traffic inspection, web filtering, and IPS.</p>
+                            <p>
+            Currently in the <strong>staging phase</strong>. I am actively learning <strong>FortiOS</strong> to deploy this unit as the primary NGFW for <strong>Deep Packet Inspection (DPI)</strong> and advanced Layer 7 security policies.
+        </p>
                         </div>
                     </div>
                     
@@ -1273,7 +1431,7 @@ nav {
                         <i class="fas fa-gamepad"></i>
                         <div class="spec-info">
                             <h4>Service: Game Server</h4>
-                            <p>Currently hosting a private Minecraft server for personal use.</p>
+                            <p>Hosting a <strong>Modded Minecraft Forge Server (1.20.1)</strong>. Optimized Java heap arguments to handle heavy mods like Biomes O' Plenty without lag.</p>
                         </div>
                     </div>
                 </div>
@@ -1300,6 +1458,52 @@ nav {
                 </div>
             </div>
         </div>
+
+        <div class="container" style="margin-top: 3rem;">
+    <div class="section-title" style="margin-bottom: 2rem;">
+        <h2>Configuration & Security Proof</h2>
+    </div>
+    
+<div class="project-cards">
+    
+    <div class="project-card">
+        <div class="project-img zoom-trigger" 
+             style="background: url('nextcloud.png') center/cover; height: 200px;" 
+             onclick="openModal('nextcloud.png', 'Nextcloud Dashboard View')">
+        </div>
+        <div class="project-content">
+            <h3><i class="fas fa-cloud"></i> Nextcloud Live</h3>
+            <p>Active Nextcloud deployment on Ubuntu Server 24.04, providing secure private cloud storage accessible via local network.</p>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="project-img zoom-trigger" 
+             style="background: url('UFW.png') center/cover; height: 200px;"
+             onclick="openModal('UFW.png', 'UFW Firewall Status Code')">
+        </div>
+        <div class="project-content">
+            <h3><i class="fas fa-shield-alt"></i> UFW Hardening</h3>
+            <p>Strict firewall configuration allowing only essential ports: SSH (Custom Port), HTTP/S (Web), and Minecraft Game Port.</p>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="project-img zoom-trigger" 
+             style="background: url('Minecraft.png') center/cover; height: 200px;"
+             onclick="openModal('Minecraft.png', 'Minecraft Server Live Console Log')">
+        </div>
+        <div class="project-content">
+            <h3><i class="fas fa-terminal"></i> Live Console Log</h3>
+            <p>
+            Minecraft Forge 1.20.1 Server running efficiently with multiple mods. 
+            Remote access is secured using <strong>ZeroTier (SD-WAN)</strong>, eliminating the need for risky public port forwarding.
+        </p>
+        </div>
+    </div>
+
+</div>
+</div>
     </div>
 </section>
 
@@ -1393,10 +1597,10 @@ nav {
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out.
             </p>
             <div class="contact-card-container">
-                <a href="mailto:alexander.sandjaja@binus.ac.id" class="contact-card">
+                <a href="mailto:alexander.putra.sandjaja@gmail.com" class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <div class="contact-title">Email</div>
-                    <div class="contact-info">alexander.sandjaja@binus.ac.id</div>
+                    <div class="contact-info">alexander.putra.sandjaja@gmail.com</div>
                 </a>
                 <a href="https://www.linkedin.com/in/alexander-putra-sandjaja/" target="_blank" class="contact-card">
                     <i class="fab fa-linkedin"></i>
@@ -1429,6 +1633,12 @@ nav {
         </div>
     </footer>
 
+        <div id="myModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
     <script>
         // Photo Gallery Logic
         const mainPhoto = document.querySelector('.main-photo img');
@@ -1443,6 +1653,51 @@ nav {
                 });
             });
         }
+
+        // --- MOBILE MENU LOGIC (UPDATE) ---
+
+const mobileMenuBtn = document.querySelector('.mobile-menu');
+const navLinksContainer = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links a'); // Ambil semua link
+
+// 1. Toggle Menu saat ikon hamburger diklik
+mobileMenuBtn.addEventListener('click', function() {
+    // Toggle class 'active' pada list menu
+    navLinksContainer.classList.toggle('active');
+    
+    // Ubah ikon hamburger jadi 'X' (Optional, visual effect)
+    const icon = this.querySelector('i');
+    if (navLinksContainer.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
+
+// 2. Otomatis tutup menu saat salah satu link diklik
+navLinksItems.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) { // Cuma jalan di mode HP
+            navLinksContainer.classList.remove('active');
+            // Balikin ikon jadi hamburger
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+});
+
+// 3. Tutup menu kalau klik di luar area menu
+document.addEventListener('click', function(e) {
+    if (!navLinksContainer.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinksContainer.classList.contains('active')) {
+        navLinksContainer.classList.remove('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
 
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
@@ -1491,8 +1746,37 @@ nav {
                 }
             });
         });
+
+        // --- TAMBAHKAN DI DALAM TAG <SCRIPT> ---
+
+// Modal Image Logic
+var modal = document.getElementById("myModal");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+var span = document.getElementsByClassName("close-modal")[0];
+
+// Fungsi untuk membuka modal (dipanggil saat gambar diklik)
+function openModal(imageSrc, imageCaption) {
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+    captionText.innerHTML = imageCaption;
+}
+
+// Fungsi untuk menutup modal saat tombol X diklik
+if (span) {
+    span.onclick = function() { 
+        modal.style.display = "none";
+    }
+}
+
+// Fungsi untuk menutup modal saat klik di luar gambar (background gelap)
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
     </script>
-    
+
 </body>
 </html>
 
